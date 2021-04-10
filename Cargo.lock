@@ -3564,6 +3564,7 @@ dependencies = [
  "hex-literal",
  "pallet-aura",
  "pallet-balances",
+ "pallet-first",
  "pallet-grandpa",
  "pallet-nicks",
  "pallet-randomness-collective-flip",
