@@ -48,7 +48,7 @@ sp-version = { default-features = false, version = '3.0.0' }
 
 # local dependencies
 pallet-template = { default-features = false, path = '../pallets/template', version = '3.0.0' }
-pallet-first = { default-features = false, path = '../pallets/first', version = '3.0.0' }
+pallet-poe = { default-features = false, path = '../pallets/poe', version = '3.0.0' }
 
 [features]
 default = ['std']
@@ -72,7 +72,7 @@ std = [
     'frame-system/std',
     'pallet-aura/std',
     'pallet-balances/std',
-    'pallet-first/std',
+    'pallet-poe/std',
     'pallet-grandpa/std',
     'pallet-randomness-collective-flip/std',
     'pallet-sudo/std',
