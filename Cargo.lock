@@ -7247,6 +7247,7 @@ dependencies = [
 [[package]]
 name = "test-pallet"
 version = "3.0.0"
+source = "git+https://github.com/anjumkaiser/substrate-test-pallet?branch=master#1b0c1841f976a2985b4297a17a891fe9591094e6"
 dependencies = [
  "frame-support",
  "frame-system",
