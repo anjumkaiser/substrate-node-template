@@ -45,6 +45,9 @@ pub use pallet_template;
 // import poe pallet
 pub use pallet_poe;
 
+// import test-pallet
+pub use test_pallet;
+
 /// An index to a block.
 pub type BlockNumber = u32;
 
@@ -292,6 +295,7 @@ construct_runtime!(
 		PoeModule: pallet_poe::{Module, Call, Storage, Event<T>},
 		// Include the custom logic from the pallet-template in the runtime.
 		TemplateModule: pallet_template::{Module, Call, Storage, Event<T>},
+		TestPallet: test_pallet::{Module, Call, Storage, Event<T>},
 	}
 );
 
@@ -534,3 +538,10 @@ impl pallet_nicks::Config for Runtime {
 impl pallet_poe::Config for Runtime {
 	type Event = Event;
 }
+
+
+// add this block
+impl test_pallet::Config for Runtime {
+  type Event = Event;
+}
+
