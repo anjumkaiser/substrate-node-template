@@ -48,6 +48,10 @@ pub use pallet_poe;
 // import test-pallet
 pub use test_pallet;
 
+// for permissioned_network
+use frame_system::EnsureRoot;
+
+
 /// An index to a block.
 pub type BlockNumber = u32;
 
@@ -293,6 +297,7 @@ construct_runtime!(
 		Scheduler: pallet_scheduler::{Module, Call, Storage, Event<T>},
 		Sudo: pallet_sudo::{Module, Call, Config<T>, Storage, Event<T>},
 		Nicks: pallet_nicks::{Module, Call, Storage, Event<T>},
+		NodeAuthorization: pallet_node_authorization::{Module, Call, Storage, Event<T>, Config<T>}, // permissioned network
 		PoeModule: pallet_poe::{Module, Call, Storage, Event<T>},
 		// Include the custom logic from the pallet-template in the runtime.
 		TemplateModule: pallet_template::{Module, Call, Storage, Event<T>},
@@ -565,3 +570,21 @@ impl pallet_scheduler::Config for Runtime {
     type MaxScheduledPerBlock = MaxScheduledPerBlock;
     type WeightInfo = ();
 }
+
+
+parameter_types! {
+    pub const MaxWellKnownNodes: u32 = 8;
+    pub const MaxPeerIdLength: u32 = 128;
+}
+
+impl pallet_node_authorization::Config for Runtime {
+    type Event = Event;
+    type MaxWellKnownNodes = MaxWellKnownNodes;
+    type MaxPeerIdLength = MaxPeerIdLength;
+    type AddOrigin = EnsureRoot<AccountId>;
+    type RemoveOrigin = EnsureRoot<AccountId>;
+    type SwapOrigin = EnsureRoot<AccountId>;
+    type ResetOrigin = EnsureRoot<AccountId>;
+    type WeightInfo = ();
+}
+
