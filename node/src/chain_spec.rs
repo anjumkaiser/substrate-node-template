@@ -11,6 +11,9 @@ use sc_service::ChainType;
 // permissioned network
 use sp_core::OpaquePeerId; // A struct wraps Vec<u8>, represents as our `PeerId`.
 use node_template_runtime::NodeAuthorizationConfig; // The genesis config that serves for our pallet.
+use node_template_runtime::ContractsConfig;
+
+
 
 
 // The URL for the telemetry server.
@@ -136,7 +139,7 @@ fn testnet_genesis(
 	initial_authorities: Vec<(AuraId, GrandpaId)>,
 	root_key: AccountId,
 	endowed_accounts: Vec<AccountId>,
-	_enable_println: bool,
+	enable_println: bool,
 ) -> GenesisConfig {
 	GenesisConfig {
 		frame_system: Some(SystemConfig {
@@ -169,6 +172,12 @@ fn testnet_genesis(
                     endowed_accounts[1].clone()
                 ),
             ],
+        }),
+        pallet_contracts: Some(ContractsConfig {
+            current_schedule: pallet_contracts::Schedule {
+                    enable_println,
+                    ..Default::default()
+            },
         }),
 	}
 }
